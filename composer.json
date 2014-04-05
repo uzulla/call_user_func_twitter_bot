@@ -1,0 +1,9 @@
+{
+    "require": {
+        "jublonet/codebird-php": "*",
+        "fastfeed/fastfeed": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {"": "lib/"}
+    }
+}

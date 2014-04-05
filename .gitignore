@@ -1,0 +1,6 @@
+/vendor/
+composer.phar
+sqlite.db
+.php-version
+config.php
+lastdate.dat
