@@ -1,4 +1,9 @@
 <?php
+ini_set('error_reporting', -1);
+ini_set('display_errors', 'Off');
+ini_set('log_errors', 'On');
+ini_set('error_log', __DIR__.'/error.log');
+
 require "vendor/autoload.php";
 require "config.php";
 
@@ -35,6 +40,7 @@ foreach($items as $item){
     }
     $str = "{$str} {$item->getSource()}";
     \Uzulla\Util\Twitter::sendTweet($user_values, $str);
+    echo $str."\n";
     sleep(1); // post wait.
     $lastdate = $item->getDate();
 }
