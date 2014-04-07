@@ -46,7 +46,12 @@ foreach($items as $item){
         $str = mb_substr($str, 0, TWEET_MAX_LENGTH_WITHOUT_URL)."…";
     }
     $str = "{$str} {$item->getSource()}";
-    \Uzulla\Util\Twitter::sendTweet($user_values, $str);
+    try{
+        \Uzulla\Util\Twitter::sendTweet($user_values, $str);
+    }catch(\Exception $e){
+        error_log($e->getMessage());
+        echo "Twitter post fail: ".$e->getMessage().PHP_EOL;
+    }
     echo $str."\n";
     sleep(1); // post wait.
     $lastdate = $item->getDate();
