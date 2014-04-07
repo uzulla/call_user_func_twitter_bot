@@ -3,6 +3,13 @@ ini_set('error_reporting', -1);
 ini_set('display_errors', 'Off');
 ini_set('log_errors', 'On');
 ini_set('error_log', __DIR__.'/error.log');
+// strict error bailout
+function strict_error_handler($errno, $errstr, $errfile, $errline)
+{
+    error_log("STRICT: {$errno} {$errstr} {$errfile} {$errline} ");
+    die ("STRICT: {$errno} {$errstr} {$errfile} {$errline} ".PHP_EOL);
+}
+set_error_handler("strict_error_handler");
 
 require "vendor/autoload.php";
 require "config.php";
