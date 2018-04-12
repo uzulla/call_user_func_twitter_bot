@@ -41,7 +41,9 @@ $items = array_reverse($items); // RSSは新しいのが上にくる（っぽい
 foreach($items as $item){
     if($lastdate>=$item->getDate()) continue;
 
-    $str = "[New]{$item->getName()} {$item->getContent()}";
+    $content = $item->getContent();
+    $content = preg_replace('|https?://[a-zA-Z0-9/:%#&~=_!\'\$\?\(\)\.\+\*]+|u', '<snip url>', $content);
+    $str = "[New]{$item->getName()} {$content}";
     if(mb_strlen($str)>TWEET_MAX_LENGTH_WITHOUT_URL){
         $str = mb_substr($str, 0, TWEET_MAX_LENGTH_WITHOUT_URL)."…";
     }
