@@ -72,7 +72,9 @@ foreach($items as $item){
     }
     $str = "{$str} {$repo_url}";
     try{
-        \Uzulla\Util\Twitter::sendTweet($user_values, $str);
+        if(TWITTER_CONSUMER_KEY!=""){
+            \Uzulla\Util\Twitter::sendTweet($user_values, $str);
+        }
     }catch(\Exception $e){
         error_log($e->getMessage());
         echo "Twitter post fail: ".$e->getMessage().PHP_EOL;
