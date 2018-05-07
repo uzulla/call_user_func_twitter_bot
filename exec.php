@@ -1,6 +1,6 @@
 <?php
 ini_set('error_reporting', -1);
-ini_set('display_errors', 'Off');
+ini_set('display_errors', 'On');
 ini_set('log_errors', 'On');
 ini_set('error_log', __DIR__.'/error.log');
 // strict error bailout
@@ -57,14 +57,14 @@ foreach($items as $item){
     $context = stream_context_create(array(
         'http' => array('ignore_errors' => true)
     ));
-    $gh_res = file_get_contents($repo_url, false, $context);
+    file_get_contents($repo_url, false, $context);
     
     if (strpos($http_response_header[0], '200') === false) {
         // not exists repo, maybe SPAM?
-        error_log("not found gh url".$gh_res);
+        error_log("not 200 SKIP: " . $repo_url . " - " . $http_response_header[0]);
         continue;
     }
-
+    
     $content = preg_replace('|https?://[a-zA-Z0-9/:%#&~=_!\'\$\?\(\)\.\+\*]+|u', '<snip url>', $content);
     $str = "[New]{$item->getName()} {$content}";
     if(mb_strlen($str)>TWEET_MAX_LENGTH_WITHOUT_URL){
