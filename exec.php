@@ -42,12 +42,35 @@ foreach($items as $item){
     if($lastdate>=$item->getDate()) continue;
 
     $content = $item->getContent();
+    $name = $item->getName();
+
+    $packagist_json_api_url = "https://packagist.org/packages/{$name}.json";
+    $api_json = file_get_contents($packagist_json_api_url);
+    $api_data = json_decode($api_json,1);
+    if(is_null($api_data)){
+        // failed. skip!
+        continue;
+    }
+
+    $repo_url = $api_data['package']['repository'];
+
+    $context = stream_context_create(array(
+        'http' => array('ignore_errors' => true)
+    ));
+    $gh_res = file_get_contents($repo_url, false, $context);
+    
+    if (strpos($http_response_header[0], '200') === false) {
+        // not exists repo, maybe SPAM?
+        error_log("not found gh url".$gh_res);
+        continue;
+    }
+
     $content = preg_replace('|https?://[a-zA-Z0-9/:%#&~=_!\'\$\?\(\)\.\+\*]+|u', '<snip url>', $content);
     $str = "[New]{$item->getName()} {$content}";
     if(mb_strlen($str)>TWEET_MAX_LENGTH_WITHOUT_URL){
         $str = mb_substr($str, 0, TWEET_MAX_LENGTH_WITHOUT_URL)."…";
     }
-    $str = "{$str} {$item->getSource()}";
+    $str = "{$str} {$repo_url}";
     try{
         \Uzulla\Util\Twitter::sendTweet($user_values, $str);
     }catch(\Exception $e){
