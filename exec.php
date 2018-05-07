@@ -60,11 +60,14 @@ foreach($items as $item){
     $repo_url = $api_data['package']['repository'];
 
     $context = stream_context_create(array(
-        'http' => array('ignore_errors' => true)
+        'http' => ['ignore_errors' => true],
     ));
     file_get_contents($repo_url, false, $context);
     
-    if (strpos($http_response_header[0], '200') === false) {
+    if (
+        strpos($http_response_header[0], '200') === false &&
+        strpos($http_response_header[0], '302') === false  // for gitlab.
+    ) {
         // not exists repo, maybe SPAM?
         error_log("not 200 SKIP: " . $repo_url . " - " . $http_response_header[0]);
         $lastdate = $item->getDate();
