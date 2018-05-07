@@ -28,6 +28,7 @@ if(!file_exists(LAST_DATE_FILE)){
     $lastdate = new DateTime(file_get_contents(LAST_DATE_FILE));
 }
 
+
 //read rss
 $newly_submitted_packages_rss = "https://packagist.org/feeds/packages.rss";
 
@@ -39,8 +40,8 @@ $items = $ff->fetch('new_submit');
 $items = array_reverse($items); // RSSは新しいのが上にくる（っぽい）ので。
 
 foreach($items as $item){
-    if($lastdate>=$item->getDate()){
-        $lastdate = $item->getDate();
+    if($lastdate->format('U') >= $item->getDate()->format('U')){
+        // skip! 
         continue;
     }
 
