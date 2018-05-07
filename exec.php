@@ -39,7 +39,10 @@ $items = $ff->fetch('new_submit');
 $items = array_reverse($items); // RSSは新しいのが上にくる（っぽい）ので。
 
 foreach($items as $item){
-    if($lastdate>=$item->getDate()) continue;
+    if($lastdate>=$item->getDate()){
+        $lastdate = $item->getDate();
+        continue;
+    }
 
     $content = $item->getContent();
     $name = $item->getName();
@@ -49,6 +52,7 @@ foreach($items as $item){
     $api_data = json_decode($api_json,1);
     if(is_null($api_data)){
         // failed. skip!
+        $lastdate = $item->getDate();
         continue;
     }
 
@@ -62,6 +66,7 @@ foreach($items as $item){
     if (strpos($http_response_header[0], '200') === false) {
         // not exists repo, maybe SPAM?
         error_log("not 200 SKIP: " . $repo_url . " - " . $http_response_header[0]);
+        $lastdate = $item->getDate();
         continue;
     }
     
