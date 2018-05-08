@@ -1,8 +1,8 @@
 <?php
 ini_set('error_reporting', -1);
 ini_set('display_errors', 'On');
-//ini_set('log_errors', 'On');
-//ini_set('error_log', __DIR__.'/error.log');
+ini_set('log_errors', 'On');
+ini_set('error_log', __DIR__.'/error.log');
 // strict error bailout
 function strict_error_handler($errno, $errstr, $errfile, $errline)
 {
