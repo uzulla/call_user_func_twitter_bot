@@ -53,7 +53,7 @@ foreach ($items as $item) {
     // check funny package name
     $num = preg_match_all("/\-/u", $name);
     if ($num>5) {
-        error_log("SKIP too many - {$name}");
+        error_log("SKIP too many '-' {$name}");
         $lastdate = $item->getDate();
         continue;
     }
@@ -95,50 +95,17 @@ foreach ($items as $item) {
 
         $gh_user_data = json_decode(file_get_contents("https://api.github.com/users/{$gh_user_name}", false, $context), 1);
         if (is_null($gh_user_data)) {
-            error_log("SKIP gh user data is null {$name}");
+            error_log("SKIP gh user data is null {$name} {$repo_url}");
             $lastdate = $item->getDate();
             continue;
         }
 
-        if ($gh_user_data['type']=="User") {
-            $point = 0;
-            // if($gh_user_data['public_repos']<3) $point ++;
-            if ($gh_user_data['public_gists']==0) {
-                $point ++;
-            }
-            if ($gh_user_data['following']==0) {
-                $point ++;
-            }
-            if ($gh_user_data['followers']==0) {
-                $point ++;
-            }
-            if ($gh_user_data['name']==null) {
-                $point ++;
-            }
-            if ($gh_user_data['company']==null) {
-                $point ++;
-            }
-            if ($gh_user_data['blog']==null) {
-                $point ++;
-            }
-            if ($gh_user_data['following']>1) {
-                $point --;
-            }
-            if ($gh_user_data['followers']>1) {
-                $point --;
-            }
-            if ($gh_user_data['public_repos']>10) {
-                $point --;
-            }
-            // if($gh_user_data['location']==NULL) $point ++;
-            // if($gh_user_data['email']==NULL) $point ++;
-            // if($gh_user_data['bio']==NULL) $point ++;
-
-            if ($point > 4) {
-                error_log("SKIP like robot {$name}");
-                $lastdate = $item->getDate();
-                continue;
-            }
+        $gh_created_at = new DateTime($gh_user_data['created_at']);
+        $yesterday_at = new DateTime('-2 days');
+        if($gh_created_at > $yesterday_at){
+            error_log("SKIP gh account too new {$name} {$repo_url}");
+            $lastdate = $item->getDate();
+            continue;
         }
     }
     
