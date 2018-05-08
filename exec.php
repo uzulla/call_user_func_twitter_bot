@@ -110,6 +110,9 @@ foreach($items as $item){
             if($gh_user_data['name']==NULL) $point ++;
             if($gh_user_data['company']==NULL) $point ++;
             if($gh_user_data['blog']==NULL) $point ++;
+            if($gh_user_data['following']>1) $point --;
+            if($gh_user_data['followers']>1) $point --;
+            if($gh_user_data['public_repos']>10) $point --;
             // if($gh_user_data['location']==NULL) $point ++;
             // if($gh_user_data['email']==NULL) $point ++;
             // if($gh_user_data['bio']==NULL) $point ++;
