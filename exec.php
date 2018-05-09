@@ -62,6 +62,10 @@ foreach ($items as $item) {
 
     // try to get repo url
     $repo_url = $api_data['package']['repository'];
+    if(!preg_match('|^https://|u', $repo_url)){
+        error_log("SKIP repo url is not https {$repo_url}"); // I found "git@gitlab.com〜" pattern. 
+        continue;
+    }
     $context = stream_context_create(array(
         'http' => [
             'ignore_errors' => true,
