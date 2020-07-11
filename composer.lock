@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
     ],
-    "hash": "c3ee25ccec8ba0ad9b3381585b8bcad8",
+    "content-hash": "030a4a450bad870c426e46b117a13cb2",
     "packages": [
         {
             "name": "desarrolla2/cache",
@@ -55,7 +56,7 @@
                 "mysql",
                 "redis"
             ],
-            "time": "2013-10-07 20:14:38"
+            "time": "2013-10-07T20:14:38+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -100,7 +101,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2013-11-30 08:25:19"
+            "time": "2013-11-30T08:25:19+00:00"
         },
         {
             "name": "fastfeed/fastfeed",
@@ -151,7 +152,7 @@
                 "rss",
                 "rss20"
             ],
-            "time": "2014-03-27 10:12:24"
+            "time": "2014-03-27T10:12:24+00:00"
         },
         {
             "name": "fastfeed/url",
@@ -187,7 +188,7 @@
                 }
             ],
             "description": "Simple Library to manage Urls",
-            "time": "2014-02-25 15:36:50"
+            "time": "2014-02-25T15:36:50+00:00"
         },
         {
             "name": "guzzle/guzzle",
@@ -279,7 +280,8 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-01-28 22:29:15"
+            "abandoned": "guzzlehttp/guzzle",
+            "time": "2014-01-28T22:29:15+00:00"
         },
         {
             "name": "jublonet/codebird-php",
@@ -306,7 +308,7 @@
                 "GPL-3.0"
             ],
             "description": "A Twitter library in PHP.",
-            "time": "2013-06-23 17:30:17"
+            "time": "2013-06-23T17:30:17+00:00"
         },
         {
             "name": "psr/log",
@@ -344,7 +346,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2012-12-21T11:40:51+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -352,12 +354,12 @@
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/EventDispatcher.git",
+                "url": "https://github.com/symfony/event-dispatcher.git",
                 "reference": "4708b8cd41984a5ba29fe7dd40716f7f761ac501"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/4708b8cd41984a5ba29fe7dd40716f7f761ac501",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/4708b8cd41984a5ba29fe7dd40716f7f761ac501",
                 "reference": "4708b8cd41984a5ba29fe7dd40716f7f761ac501",
                 "shasum": ""
             },
@@ -400,23 +402,21 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-11 13:52:09"
+            "time": "2014-02-11T13:52:09+00:00"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "fastfeed/fastfeed": 20
     },
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "ext-json": "*",
+        "ext-mbstring": "*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
