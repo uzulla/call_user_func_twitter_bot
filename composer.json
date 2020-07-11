@@ -1,9 +1,13 @@
 {
-    "require": {
-        "jublonet/codebird-php": "*",
-        "fastfeed/fastfeed": "dev-master"
-    },
-    "autoload": {
-        "psr-0": {"": "lib/"}
+  "require": {
+    "jublonet/codebird-php": "*",
+    "fastfeed/fastfeed": "dev-master",
+    "ext-json": "*",
+    "ext-mbstring": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "": "lib/"
     }
+  }
 }
