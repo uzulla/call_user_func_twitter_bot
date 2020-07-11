@@ -9,5 +9,8 @@
     "psr-0": {
       "": "lib/"
     }
+  },
+  "scripts": {
+    "post" : "php exec.php"
   }
 }
