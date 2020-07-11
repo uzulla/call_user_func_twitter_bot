@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnused */
 
 namespace Uzulla\Util;
 
@@ -46,9 +46,10 @@ class Twitter
         $cb->setToken($user_value['twitter_oauth_token'], $user_value['twitter_oauth_token_secret']);
 
         try {
-            $res = $cb->account_verifyCredentials();
-            if ($res->httpstatus != 200) {
-                throw new Exception("Twitter api response {$res->httpstatus} -> {$res->errors[0]->message}");
+            /** @noinspection PhpUndefinedMethodInspection */
+            $res = (array)$cb->account_verifyCredentials();
+            if ($res['httpstatus'] != 200) {
+                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
             }
             if (!$res) {
                 throw new Exception('null response');
@@ -75,9 +76,10 @@ class Twitter
         $cb->setToken($user_value['twitter_oauth_token'], $user_value['twitter_oauth_token_secret']);
 
         try {
-            $res = $cb->users_show(['screen_name' => $screen_name]);
-            if ($res->httpstatus != 200) {
-                throw new Exception("Twitter api response {$res->httpstatus} -> {$res->errors[0]->message}");
+            /** @noinspection PhpUndefinedMethodInspection */
+            $res = (array)$cb->users_show(['screen_name' => $screen_name]);
+            if ($res['httpstatus'] != 200) {
+                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
             }
         } catch (Exception $e) {
             throw $e;
@@ -98,9 +100,10 @@ class Twitter
         $cb->setToken($user_value['twitter_oauth_token'], $user_value['twitter_oauth_token_secret']);
 
         try {
-            $res = $cb->users_show(['user_id' => $twitter_id]);
-            if ($res->httpstatus != 200) {
-                throw new Exception("Twitter api response {$res->httpstatus} -> {$res->errors[0]->message}");
+            /** @noinspection PhpUndefinedMethodInspection */
+            $res = (array)$cb->users_show(['user_id' => $twitter_id]);
+            if ($res['httpstatus'] != 200) {
+                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
             }
         } catch (Exception $e) {
             throw $e;
@@ -132,11 +135,11 @@ class Twitter
             if ($since_id != null) {
                 $params['since_id'] = $since_id;
             }
-            $res = $cb->$api($params);
+            $res = (array)$cb->$api($params);
             if ($res['httpstatus'] != 200) {
                 error_log(print_r($cb, 1));
                 error_log(print_r($res, 1));
-                throw new Exception("Twitter api response {$res->httpstatus} -> {$res->errors[0]->message}");
+                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
             }
             unset($res['httpstatus']);
 
@@ -158,9 +161,10 @@ class Twitter
         $cb->setToken($user_value['twitter_oauth_token'], $user_value['twitter_oauth_token_secret']);
 
         try {
-            $res = $cb->friendships_create(['screen_name' => $screen_name]);
-            if ($res->httpstatus != 200) {
-                throw new Exception("Twitter api response {$res->httpstatus} -> {$res->errors[0]->message}");
+            /** @noinspection PhpUndefinedMethodInspection */
+            $res = (array)$cb->friendships_create(['screen_name' => $screen_name]);
+            if ($res['httpstatus'] != 200) {
+                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
             }
         } catch (Exception $e) {
             throw $e;
@@ -181,9 +185,10 @@ class Twitter
         $cb->setToken($user_value['twitter_oauth_token'], $user_value['twitter_oauth_token_secret']);
 
         try {
-            $res = $cb->friendships_lookup(['screen_name' => $screen_name]);
-            if ($res->httpstatus != 200) {
-                throw new Exception("Twitter api response {$res->httpstatus} -> {$res->errors[0]->message}");
+            /** @noinspection PhpUndefinedMethodInspection */
+            $res = (array)$cb->friendships_lookup(['screen_name' => $screen_name]);
+            if ($res['httpstatus'] != 200) {
+                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
             }
         } catch (Exception $e) {
             throw $e;
@@ -230,11 +235,12 @@ class Twitter
         $cb->setToken($user_value['twitter_oauth_token'], $user_value['twitter_oauth_token_secret']);
 
         try {
-            $res = $cb->statuses_update([
+            /** @noinspection PhpUndefinedMethodInspection */
+            $res = (array)$cb->statuses_update([
                 'status' => $text
             ]);
-            if ($res->httpstatus != 200) {
-                throw new Exception("Twitter api response {$res->httpstatus} -> {$res->errors[0]->message}");
+            if ($res['httpstatus'] != 200) {
+                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
             }
         } catch (Exception $e) {
             throw $e;
@@ -251,6 +257,7 @@ class Twitter
     {
         try {
             $cb = Codebird::getInstance();
+            /** @noinspection PhpUndefinedMethodInspection */
             $reply = $cb->oauth_requestToken(array(
                 'oauth_callback' => $callback_url
             ));
@@ -281,6 +288,7 @@ class Twitter
         try {
             $cb = Codebird::getInstance();
             $cb->setToken($_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
+            /** @noinspection PhpUndefinedMethodInspection */
             $reply = $cb->oauth_accessToken(['oauth_verifier' => $_GET['oauth_verifier']]);
             var_dump($reply);
 
