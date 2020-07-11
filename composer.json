@@ -1,4 +1,6 @@
 {
+  "name" : "uzulla/call_user_func_twitter_bot",
+  "description" : "Tweet new package from packagist",
   "require": {
     "jublonet/codebird-php": "*",
     "fastfeed/fastfeed": "dev-master",
