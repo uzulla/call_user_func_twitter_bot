@@ -1,9 +1,9 @@
 <?php
-// strict error bailout
 use FastFeed\Factory;
 use FastFeed\Item;
 use Uzulla\Util\Twitter;
 
+// strict error bailout
 function strict_error_handler($errno, $errstr, $errfile, $errline)
 {
     error_log("STRICT: {$errno} {$errstr} {$errfile} {$errline} ");
@@ -13,20 +13,30 @@ function strict_error_handler($errno, $errstr, $errfile, $errline)
 set_error_handler("strict_error_handler");
 
 require "vendor/autoload.php";
-require "config.php";
+if(file_exists("config.php")) {
+    require "config.php";
+}else{
+    require "config.sample.php";
+}
 
-//twitter setup
+// twitter setup
 $user_values = [
     'twitter_oauth_token' => TWITTER_ACCESS_TOKEN,
     'twitter_oauth_token_secret' => TWITTER_ACCESS_TOKEN_SECRET
 ];
 Twitter::setConsumerKey(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET);
 
-//drift file
-if (!file_exists(LAST_DATE_FILE)) {
+// get last update date.
+try {
+    try {
+        $tweets = Twitter::getTweetByScreenName($user_values, 'call_user_func');
+    }catch(Exception $e){
+        error_log("failed get last tweet from twitter");
+        exit(1);
+    }
+    $last_date = new DateTime($tweets[0]->created_at);
+}catch(Exception $e){
     $last_date = new DateTime('2000-01-01 00:00:00');
-} else {
-    $last_date = new DateTime(file_get_contents(LAST_DATE_FILE));
 }
 
 //read rss
@@ -51,7 +61,6 @@ foreach ($items as $item) {
     // check funny package name
     if (preg_match_all("/-/u", $name) > 5) {
         error_log("SKIP too many '-' {$name}");
-        $last_date = $item->getDate();
         continue;
     }
 
@@ -61,7 +70,6 @@ foreach ($items as $item) {
     $api_data = json_decode($api_json, 1);
     if (is_null($api_data)) { // failed. skip!
         error_log("SKIP packagist json api access failed. {$name}");
-        $last_date = $item->getDate();
         continue;
     }
 
@@ -103,37 +111,38 @@ foreach ($items as $item) {
         $gh_user_data = json_decode(file_get_contents("https://api.github.com/users/{$gh_user_name}", false, $context), 1);
         if (is_null($gh_user_data)) {
             error_log("SKIP gh user data is null {$name} {$repo_url}");
-            $last_date = $item->getDate();
             continue;
         }
 
-        $gh_created_at = new DateTime($gh_user_data['created_at']);
+        try {
+            $gh_created_at = new DateTime($gh_user_data['created_at']);
+        } catch (Exception $e) {
+            error_log("fail parse datetime gh_user_data['created_at']");
+            continue;
+        }
         $yesterday_at = new DateTime('-2 days');
         if ($gh_created_at > $yesterday_at) {
             error_log("SKIP gh account too new {$name} {$repo_url}");
-            $last_date = $item->getDate();
             continue;
         }
     }
 
     // snip url. that is spammers link in many cases. I don't want get DMCA mail.
     $content = preg_replace('|https?://[a-zA-Z0-9/:%#&~=_!\'$?().+*]+|u', '<snip url>', $content);
-    $str = "[New]{$item->getName()} {$content}";
+    $str = "{$item->getName()} {$content}";
     if (mb_strlen($str) > TWEET_MAX_LENGTH_WITHOUT_URL) {
         $str = mb_substr($str, 0, TWEET_MAX_LENGTH_WITHOUT_URL) . "…";
     }
     $str = "{$str} {$repo_url}";
     try {
-        if (TWITTER_CONSUMER_KEY!="") {
-            \Uzulla\Util\Twitter::sendTweet($user_values, $str);
+        if (TWITTER_CONSUMER_KEY != "") {
+            Twitter::sendTweet($user_values, $str);
+//            var_dump([$user_values, $str]);
         }
     } catch (Exception $e) {
         error_log($e->getMessage());
-        echo "Twitter post fail: " . $e->getMessage() . PHP_EOL;
+        error_log("Twitter post fail: " . $e->getMessage());
     }
-    echo $str . "\n";
+//    echo $str . "\n";
     sleep(1); // post wait.
-    $last_date = $item->getDate();
 }
-
-file_put_contents(LAST_DATE_FILE, $last_date->format('c')); // update last
