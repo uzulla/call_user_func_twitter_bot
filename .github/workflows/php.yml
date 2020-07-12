@@ -1,6 +1,8 @@
 name: execute
 
 on:
+  workdlow_dispatch:
+    branches: [ master ]
   schedule:
     - cron:  '*/30 * * * *'
 
