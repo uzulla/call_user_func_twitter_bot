@@ -49,7 +49,7 @@ class Twitter
             /** @noinspection PhpUndefinedMethodInspection */
             $res = (array)$cb->account_verifyCredentials();
             if ($res['httpstatus'] != 200) {
-                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
+                throw new Exception("Twitter api response " . json_encode($res, JSON_UNESCAPED_UNICODE));
             }
             if (!$res) {
                 throw new Exception('null response');
@@ -79,7 +79,7 @@ class Twitter
             /** @noinspection PhpUndefinedMethodInspection */
             $res = (array)$cb->users_show(['screen_name' => $screen_name]);
             if ($res['httpstatus'] != 200) {
-                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
+                throw new Exception("Twitter api response " . json_encode($res, JSON_UNESCAPED_UNICODE));
             }
         } catch (Exception $e) {
             throw $e;
@@ -103,7 +103,7 @@ class Twitter
             /** @noinspection PhpUndefinedMethodInspection */
             $res = (array)$cb->users_show(['user_id' => $twitter_id]);
             if ($res['httpstatus'] != 200) {
-                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
+                throw new Exception("Twitter api response " . json_encode($res, JSON_UNESCAPED_UNICODE));
             }
         } catch (Exception $e) {
             throw $e;
@@ -139,7 +139,7 @@ class Twitter
             if ($res['httpstatus'] != 200) {
                 error_log(print_r($cb, 1));
                 error_log(print_r($res, 1));
-                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
+                throw new Exception("Twitter api response " . json_encode($res, JSON_UNESCAPED_UNICODE));
             }
             unset($res['httpstatus']);
 
@@ -164,7 +164,7 @@ class Twitter
             /** @noinspection PhpUndefinedMethodInspection */
             $res = (array)$cb->friendships_create(['screen_name' => $screen_name]);
             if ($res['httpstatus'] != 200) {
-                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
+                throw new Exception("Twitter api response " . json_encode($res, JSON_UNESCAPED_UNICODE));
             }
         } catch (Exception $e) {
             throw $e;
@@ -188,7 +188,7 @@ class Twitter
             /** @noinspection PhpUndefinedMethodInspection */
             $res = (array)$cb->friendships_lookup(['screen_name' => $screen_name]);
             if ($res['httpstatus'] != 200) {
-                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
+                throw new Exception("Twitter api response " . json_encode($res, JSON_UNESCAPED_UNICODE));
             }
         } catch (Exception $e) {
             throw $e;
@@ -240,7 +240,7 @@ class Twitter
                 'status' => $text
             ]);
             if ($res['httpstatus'] != 200) {
-                throw new Exception("Twitter api response {$res['httpstatus']} -> {$res['errors'][0]['message']}");
+                throw new Exception("Twitter api response " . json_encode($res, JSON_UNESCAPED_UNICODE));
             }
         } catch (Exception $e) {
             throw $e;
