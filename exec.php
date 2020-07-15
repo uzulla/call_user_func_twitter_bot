@@ -1,4 +1,5 @@
 <?php
+
 use FastFeed\Factory;
 use FastFeed\Item;
 use Uzulla\Util\Twitter;
@@ -13,9 +14,9 @@ function strict_error_handler($errno, $errstr, $errfile, $errline)
 set_error_handler("strict_error_handler");
 
 require "vendor/autoload.php";
-if(file_exists("config.php")) {
+if (file_exists("config.php")) {
     require "config.php";
-}else{
+} else {
     require "config.sample.php";
 }
 
@@ -30,12 +31,12 @@ Twitter::setConsumerKey(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET);
 try {
     try {
         $tweets = Twitter::getTweetByScreenName($user_values, 'call_user_func');
-    }catch(Exception $e){
+    } catch (Exception $e) {
         error_log("failed get last tweet from twitter");
         exit(1);
     }
     $last_date = new DateTime($tweets[0]->created_at);
-}catch(Exception $e){
+} catch (Exception $e) {
     $last_date = new DateTime('2000-01-01 00:00:00');
 }
 
@@ -58,13 +59,13 @@ foreach ($items as $item) {
     $content = $item->getContent();
     $name = $item->getName();
 
-    // check funny package name
+    // check funny package name (At many times. spammer's pseudo library name have a lot of hyphens.)
     if (preg_match_all("/-/u", $name) > 5) {
         error_log("SKIP too many '-' {$name}");
         continue;
     }
 
-    // get package meta data
+    // get the package's meta data
     $packagist_json_api_url = "https://packagist.org/packages/{$name}.json";
     $api_json = file_get_contents($packagist_json_api_url);
     $api_data = json_decode($api_json, 1);
@@ -87,7 +88,7 @@ foreach ($items as $item) {
     ));
     file_get_contents($repo_url, false, $context);
 
-    // check repo exists
+    // check repo url.
     if (
         strpos($http_response_header[0], '200') === false &&
         strpos($http_response_header[0], '302') === false  // for gitlab.
@@ -97,7 +98,7 @@ foreach ($items as $item) {
         continue;
     }
 
-    // if github, more check user info (many spammer uses github)
+    // If the repo on github, Carefully inspect user information. (a lot of Spammer uses github)
     if (strpos($repo_url, 'github') !== false) {
         $match = preg_match("|https://github.com/([^/]+)/|u", $repo_url, $m);
         $gh_user_name = $m[1]; // FIXME why not use api???
@@ -127,8 +128,8 @@ foreach ($items as $item) {
         }
     }
 
-    // snip url. that is spammers link in many cases. I don't want get DMCA mail.
-    $content = preg_replace('|https?://[a-zA-Z0-9/:%#&~=_!\'$?().+*]+|u', '<snip url>', $content);
+    // Remove url. url in the description/summary often link to spammers site. I don't want DMCA mail anymore.
+    $content = preg_replace('|https?://[a-zA-Z0-9/:%#&~=_!\'$?().+*]+|u', '{strip url}', $content);
     $str = "{$item->getName()} {$content}";
     if (mb_strlen($str) > TWEET_MAX_LENGTH_WITHOUT_URL) {
         $str = mb_substr($str, 0, TWEET_MAX_LENGTH_WITHOUT_URL) . "…";

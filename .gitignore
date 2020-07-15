@@ -1,8 +1,4 @@
 /vendor/
 composer.phar
-sqlite.db
 .php-version
 config.php
-lastdate.dat
-exec.php.log
-error.log
