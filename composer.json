@@ -3,10 +3,11 @@
   "description" : "Tweet new package from packagist",
   "require": {
     "jublonet/codebird-php": "*",
-    "fastfeed/fastfeed": "dev-master",
     "ext-json": "*",
     "ext-mbstring": "*",
-    "ext-curl": "*"
+    "ext-curl": "*",
+    "symfony/event-dispatcher": "^5.2",
+    "simplepie/simplepie": "^1.5"
   },
   "autoload": {
     "psr-0": {

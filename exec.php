@@ -43,21 +43,23 @@ try {
 //read rss
 $newly_submitted_packages_rss = "https://packagist.org/feeds/packages.rss";
 
-$ff = Factory::create();
-$ff->addFeed('new_submit', $newly_submitted_packages_rss);
+$feed = new SimplePie();
+$feed->set_feed_url($newly_submitted_packages_rss);
+$feed->enable_cache(false);
+$feed->init();
 
-/** @var Item[] $items */
-$items = $ff->fetch('new_submit');
+/** @var SimplePie_Item[] $items */
+$items = $feed->get_items();
 $items = array_reverse($items); // RSSは新しいのが上にくる（っぽい）ので。
 
 foreach ($items as $item) {
-    if ($last_date->format('U') >= $item->getDate()->format('U')) {
+    if ($last_date->format('U') >= $item->get_date('U')) {
         // already processed, skip!
         continue;
     }
 
-    $content = $item->getContent();
-    $name = $item->getName();
+    $content = $item->get_content();
+    $name = $item->get_title();
 
     // check funny package name (At many times. spammer's pseudo library name have a lot of hyphens.)
     if (preg_match_all("/-/u", $name) > 5) {
@@ -94,7 +96,7 @@ foreach ($items as $item) {
         strpos($http_response_header[0], '302') === false  // for gitlab.
     ) {
         error_log("SKIP repo url not 200|302 " . $repo_url . " - " . $http_response_header[0]);
-        $last_date = $item->getDate();
+        $last_date = new DateTime("@{$item->get_date('U')}");
         continue;
     }
 
@@ -116,7 +118,12 @@ foreach ($items as $item) {
         }
 
         try {
-            $gh_created_at = new DateTime($gh_user_data['created_at']);
+            if(isset($gh_user_data['created_at'])) {
+                $gh_created_at = new DateTime($gh_user_data['created_at']);
+            }else{
+                error_log("missing created_at? :" . print_r($gh_user_data,true));
+                continue;
+            }
         } catch (Exception $e) {
             error_log("fail parse datetime gh_user_data['created_at']");
             continue;
@@ -130,7 +137,7 @@ foreach ($items as $item) {
 
     // Remove url. url in the description/summary often link to spammers site. I don't want DMCA mail anymore.
     $content = preg_replace('|https?://[a-zA-Z0-9/:%#&~=_!\'$?().+*]+|u', '{strip url}', $content);
-    $str = "{$item->getName()} {$content}";
+    $str = "{$item->get_title()} {$content}";
     if (mb_strlen($str) > TWEET_MAX_LENGTH_WITHOUT_URL) {
         $str = mb_substr($str, 0, TWEET_MAX_LENGTH_WITHOUT_URL) . "…";
     }

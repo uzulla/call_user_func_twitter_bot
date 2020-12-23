@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "962517914539b2fa203acbf1ba45ef80",
+    "content-hash": "5b862fd43d1b55baf40315ea5eab796b",
     "packages": [
         {
             "name": "composer/installers",
@@ -148,357 +148,6 @@
             "time": "2020-04-07T06:57:05+00:00"
         },
         {
-            "name": "desarrolla2/cache",
-            "version": "v3.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/desarrolla2/Cache.git",
-                "reference": "4d0cf92133b9800b4949733294bd759cb58bd302"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/desarrolla2/Cache/zipball/4d0cf92133b9800b4949733294bd759cb58bd302",
-                "reference": "4d0cf92133b9800b4949733294bd759cb58bd302",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2.0",
-                "psr/simple-cache": "^1.0"
-            },
-            "provide": {
-                "psr/simple-cache-implementation": "1.0"
-            },
-            "require-dev": {
-                "cache/integration-tests": "dev-master",
-                "ext-apcu": "*",
-                "ext-json": "*",
-                "ext-memcached": "*",
-                "ext-mysqli": "*",
-                "mikey179/vfsstream": "v1.6.8",
-                "mongodb/mongodb": "^1.3",
-                "phpstan/phpstan": "^0.12.29",
-                "phpunit/phpunit": "^8.3 || ^9.0",
-                "predis/predis": "~1.0.0",
-                "symfony/phpunit-bridge": "^5.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Desarrolla2\\Cache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel González",
-                    "homepage": "http://desarrolla2.com/"
-                },
-                {
-                    "name": "Arnold Daniels",
-                    "homepage": "https://jasny.net/"
-                }
-            ],
-            "description": "Provides an cache interface for several adapters Apc, Apcu, File, Mongo, Memcache, Memcached, Mysql, Mongo, Redis is supported.",
-            "homepage": "https://github.com/desarrolla2/Cache/",
-            "keywords": [
-                "apc",
-                "apcu",
-                "cache",
-                "file",
-                "memcache",
-                "memcached",
-                "mongo",
-                "mysql",
-                "psr-16",
-                "redis",
-                "simple-cache"
-            ],
-            "support": {
-                "issues": "https://github.com/desarrolla2/Cache/issues",
-                "source": "https://github.com/desarrolla2/Cache/tree/v3.0.1"
-            },
-            "time": "2020-12-18T05:24:11+00:00"
-        },
-        {
-            "name": "egeloen/http-adapter",
-            "version": "0.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/egeloen/ivory-http-adapter.git",
-                "reference": "a1a5ef1269c5657dd9bac0bd7e999ae09f36485f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/egeloen/ivory-http-adapter/zipball/a1a5ef1269c5657dd9bac0bd7e999ae09f36485f",
-                "reference": "a1a5ef1269c5657dd9bac0bd7e999ae09f36485f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "psr/http-message": "~0.5.0"
-            },
-            "require-dev": {
-                "cakephp/cakephp": "^2.5.7",
-                "ext-curl": "*",
-                "guzzle/guzzle": "^3.9.2",
-                "guzzlehttp/guzzle": ">=4.1.4,<6.0.0",
-                "guzzlehttp/streams": ">=1.5.0,<4.0.0",
-                "kriswallsmith/buzz": "~0.13",
-                "nategood/httpful": "^0.2.17",
-                "phpunit/phpunit": "~4.0",
-                "phpunit/phpunit-mock-objects": "dev-matcher-verify as 2.3.x-dev",
-                "psr/log": "~1.0",
-                "react/dns": "^0.4.1",
-                "react/http-client": "~0.4",
-                "satooshi/php-coveralls": "~0.6",
-                "symfony/event-dispatcher": "~2.0",
-                "zendframework/zendframework": "~2.4@dev",
-                "zendframework/zendframework1": "^1.12.9"
-            },
-            "suggest": {
-                "ext-curl": "Allows you to use the cURL adapter",
-                "guzzle/guzzle": "Allows you to use the Guzzle 3 adapter",
-                "guzzlehttp/guzzle": "Allows you to use the Guzzle 4 adapter",
-                "kriswallsmith/buzz": "Allows you to use the Buzz adapter",
-                "nategood/httpful": "Allows you to use the httpful adapter",
-                "psr/log": "Allows you to use the logger event subscriber",
-                "symfony/event-dispatcher": "Allows you to use the event lifecycle",
-                "symfony/stopwatch": "Allows you to use the stopwatch http adapter and event subscriber",
-                "zendframework/zend-http": "Allows you to use the Zend 2 adapter",
-                "zendframework/zendframework1": "Allows you to use the Zend 1 adapter"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Ivory\\HttpAdapter\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Eric GELOEN",
-                    "email": "geloen.eric@gmail.com"
-                }
-            ],
-            "description": "Issue HTTP request for PHP 5.3+.",
-            "keywords": [
-                "http",
-                "http-adapter",
-                "http-client",
-                "psr-7"
-            ],
-            "support": {
-                "issues": "https://github.com/egeloen/ivory-http-adapter/issues",
-                "source": "https://github.com/egeloen/ivory-http-adapter/tree/master"
-            },
-            "abandoned": "php-http/httplug",
-            "time": "2015-02-10T20:13:41+00:00"
-        },
-        {
-            "name": "fastfeed/fastfeed",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FastFeed/FastFeed.git",
-                "reference": "a7b5c656bc05ee32ab83f0a83a227f1ad48d6ffd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FastFeed/FastFeed/zipball/a7b5c656bc05ee32ab83f0a83a227f1ad48d6ffd",
-                "reference": "a7b5c656bc05ee32ab83f0a83a227f1ad48d6ffd",
-                "shasum": ""
-            },
-            "require": {
-                "desarrolla2/cache": ">=1.0.0",
-                "egeloen/http-adapter": "^0.6",
-                "fastfeed/url": ">=0.1.0",
-                "guzzlehttp/guzzle": "~3.7",
-                "php": ">=5.4",
-                "psr/log": "~1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "FastFeed\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel González",
-                    "homepage": "http://desarrolla2.com/"
-                }
-            ],
-            "description": "A simple to use Feed Client Library.",
-            "keywords": [
-                "atom",
-                "atom10",
-                "feed",
-                "feed parser",
-                "rss",
-                "rss20"
-            ],
-            "support": {
-                "issues": "https://github.com/fastfeed/fastfeed/issues",
-                "source": "https://github.com/FastFeed/FastFeed/tree/0.4.1"
-            },
-            "time": "2019-06-12T19:20:19+00:00"
-        },
-        {
-            "name": "fastfeed/url",
-            "version": "v0.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FastFeed/Url.git",
-                "reference": "25f21529c2261557a9eabedec8d0bcfb18b5449b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FastFeed/Url/zipball/25f21529c2261557a9eabedec8d0bcfb18b5449b",
-                "reference": "25f21529c2261557a9eabedec8d0bcfb18b5449b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "FastFeed\\Url\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel González Cerviño",
-                    "email": "daniel@desarrolla2.com"
-                }
-            ],
-            "description": "Simple Library to manage Urls",
-            "support": {
-                "issues": "https://github.com/FastFeed/Url/issues",
-                "source": "https://github.com/FastFeed/Url/tree/master"
-            },
-            "time": "2014-02-25T15:36:50+00:00"
-        },
-        {
-            "name": "guzzlehttp/guzzle",
-            "version": "v3.8.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
-                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.3.3",
-                "symfony/event-dispatcher": ">=2.1"
-            },
-            "replace": {
-                "guzzle/batch": "self.version",
-                "guzzle/cache": "self.version",
-                "guzzle/common": "self.version",
-                "guzzle/http": "self.version",
-                "guzzle/inflection": "self.version",
-                "guzzle/iterator": "self.version",
-                "guzzle/log": "self.version",
-                "guzzle/parser": "self.version",
-                "guzzle/plugin": "self.version",
-                "guzzle/plugin-async": "self.version",
-                "guzzle/plugin-backoff": "self.version",
-                "guzzle/plugin-cache": "self.version",
-                "guzzle/plugin-cookie": "self.version",
-                "guzzle/plugin-curlauth": "self.version",
-                "guzzle/plugin-error-response": "self.version",
-                "guzzle/plugin-history": "self.version",
-                "guzzle/plugin-log": "self.version",
-                "guzzle/plugin-md5": "self.version",
-                "guzzle/plugin-mock": "self.version",
-                "guzzle/plugin-oauth": "self.version",
-                "guzzle/service": "self.version",
-                "guzzle/stream": "self.version"
-            },
-            "require-dev": {
-                "doctrine/cache": "*",
-                "monolog/monolog": "1.*",
-                "phpunit/phpunit": "3.7.*",
-                "psr/log": "1.0.*",
-                "symfony/class-loader": "*",
-                "zendframework/zend-cache": "<2.3",
-                "zendframework/zend-log": "<2.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.8-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Guzzle": "src/",
-                    "Guzzle\\Tests": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                },
-                {
-                    "name": "Guzzle Community",
-                    "homepage": "https://github.com/guzzle/guzzle/contributors"
-                }
-            ],
-            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "client",
-                "curl",
-                "framework",
-                "http",
-                "http client",
-                "rest",
-                "web service"
-            ],
-            "support": {
-                "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/master"
-            },
-            "time": "2014-01-28T22:29:15+00:00"
-        },
-        {
             "name": "jublonet/codebird-php",
             "version": "3.1.0",
             "source": {
@@ -613,155 +262,75 @@
             "time": "2019-01-08T18:20:26+00:00"
         },
         {
-            "name": "psr/http-message",
-            "version": "0.5.1",
+            "name": "simplepie/simplepie",
+            "version": "1.5.6",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/http-message.git",
-                "reference": "18619eee10ecf266bafe048e5a2922fa20938498"
+                "url": "https://github.com/simplepie/simplepie.git",
+                "reference": "1c68e14ca3ac84346b6e6fe3c5eedf725d0f92c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/18619eee10ecf266bafe048e5a2922fa20938498",
-                "reference": "18619eee10ecf266bafe048e5a2922fa20938498",
-                "shasum": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Http\\Message\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for HTTP messages",
-            "keywords": [
-                "http",
-                "http-message",
-                "psr",
-                "psr-7",
-                "request",
-                "response"
-            ],
-            "support": {
-                "issues": "https://github.com/php-fig/http-message/issues",
-                "source": "https://github.com/php-fig/http-message/tree/master"
-            },
-            "time": "2014-11-04T14:03:01+00:00"
-        },
-        {
-            "name": "psr/log",
-            "version": "1.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "url": "https://api.github.com/repos/simplepie/simplepie/zipball/1c68e14ca3ac84346b6e6fe3c5eedf725d0f92c6",
+                "reference": "1c68e14ca3ac84346b6e6fe3c5eedf725d0f92c6",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "ext-pcre": "*",
+                "ext-xml": "*",
+                "ext-xmlreader": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.4.3 || ~6.5"
+            },
+            "suggest": {
+                "ext-curl": "",
+                "ext-iconv": "",
+                "ext-intl": "",
+                "ext-mbstring": "",
+                "mf2/mf2": "Microformat module that allows for parsing HTML for microformats"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
             "autoload": {
-                "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
+                "psr-0": {
+                    "SimplePie": "library"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for logging libraries",
-            "homepage": "https://github.com/php-fig/log",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
-            "support": {
-                "source": "https://github.com/php-fig/log/tree/1.1.3"
-            },
-            "time": "2020-03-23T09:12:05+00:00"
-        },
-        {
-            "name": "psr/simple-cache",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\SimpleCache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
+                    "name": "Ryan Parman",
+                    "homepage": "http://ryanparman.com/",
+                    "role": "Creator, alumnus developer"
+                },
                 {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "name": "Sam Sneddon",
+                    "homepage": "https://gsnedders.com/",
+                    "role": "Alumnus developer"
+                },
+                {
+                    "name": "Ryan McCue",
+                    "email": "me@ryanmccue.info",
+                    "homepage": "http://ryanmccue.info/",
+                    "role": "Developer"
                 }
             ],
-            "description": "Common interfaces for simple caching",
+            "description": "A simple Atom/RSS parsing library for PHP",
+            "homepage": "http://simplepie.org/",
             "keywords": [
-                "cache",
-                "caching",
-                "psr",
-                "psr-16",
-                "simple-cache"
+                "atom",
+                "feeds",
+                "rss"
             ],
             "support": {
-                "source": "https://github.com/php-fig/simple-cache/tree/master"
+                "issues": "https://github.com/simplepie/simplepie/issues",
+                "source": "https://github.com/simplepie/simplepie/tree/1.5.6"
             },
-            "time": "2017-10-23T01:57:42+00:00"
+            "time": "2020-10-14T07:17:22+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1081,9 +650,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "fastfeed/fastfeed": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
