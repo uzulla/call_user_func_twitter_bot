@@ -5,7 +5,8 @@
     "jublonet/codebird-php": "*",
     "fastfeed/fastfeed": "dev-master",
     "ext-json": "*",
-    "ext-mbstring": "*"
+    "ext-mbstring": "*",
+    "ext-curl": "*"
   },
   "autoload": {
     "psr-0": {
